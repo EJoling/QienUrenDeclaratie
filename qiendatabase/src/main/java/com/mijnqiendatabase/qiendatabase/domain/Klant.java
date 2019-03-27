@@ -14,10 +14,6 @@ public class Klant extends User{
 
 	}
 
-	public void afwijzen() {
-
-	}
-
 	public Set<Trainee> getTrainee() {
 		return trainee;
 	}
