@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Formulier {
+public abstract class Formulier {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
