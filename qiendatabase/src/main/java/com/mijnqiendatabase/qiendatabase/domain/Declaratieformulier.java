@@ -1,26 +1,19 @@
 package com.mijnqiendatabase.qiendatabase.domain;
 
-import java.util.ArrayList;
+
+import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Declaratieformulier extends Formulier{
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
 	
-	private ArrayList<Kosten> kosten;
+	@OneToMany
+	private Set<Kosten> kosten;
 	
-	public long getId() {
-		return id;
-	}
 
-	public ArrayList<Kosten> getKosten() {
+	public Set<Kosten> getKosten() {
 		return kosten;
 	}
 	

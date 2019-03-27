@@ -1,12 +1,15 @@
 package com.mijnqiendatabase.qiendatabase.domain;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Kostensoort {
 
 	@Id
@@ -21,7 +24,7 @@ public class Kostensoort {
 	private boolean opmerkingVerplicht; // bij overige kosten is dit verplicht
 	//private boolean bijlageVerplicht; //verplicht bij alle kosten? bij auto ook?
 	private String eenheid; //kan km of euro's zijn. wordt in setter bepaald.
-	
+
 	
 	
 	

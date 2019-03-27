@@ -1,9 +1,14 @@
 package com.mijnqiendatabase.qiendatabase.domain;
 
-import java.util.ArrayList;
+import java.util.Set;
 
-public class Klant {
-	private ArrayList<Trainee> trainee;// Een klant heeft een of meer trainees die bij hem werkt
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Klant extends User{
+	@OneToMany
+	private Set<Trainee> trainee;// Een klant heeft een of meer trainees die bij hem werkt
 
 	public void goedkeuren() {
 
@@ -13,11 +18,11 @@ public class Klant {
 
 	}
 
-	public ArrayList<Trainee> getTrainee() {
+	public Set<Trainee> getTrainee() {
 		return trainee;
 	}
 
-	public void setTrainee(ArrayList<Trainee> trainee) {
+	public void setTrainee(Set<Trainee> trainee) {
 		this.trainee = trainee;
 	}
 

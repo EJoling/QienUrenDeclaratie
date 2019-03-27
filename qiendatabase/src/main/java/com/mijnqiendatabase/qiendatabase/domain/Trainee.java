@@ -1,17 +1,19 @@
 package com.mijnqiendatabase.qiendatabase.domain;
 
-import java.util.ArrayList;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Trainee extends User {
 
 	private int loon; // in centen
 	private int type; // bijv Masterclass of gedetacheerd, ivm reiskostenvergoeding
-//	private ArrayList<TijdsFormulier> tijdsformulier;
-//	private ArrayList<DeclaratieFormulier> declaraties;
-	private ArrayList<Klant> klant; // een trainee werkt bij 1 of meer klanten
+//	private Set<TijdsFormulier> tijdsformulier;
+//	private Set<DeclaratieFormulier> declaraties;
+	@OneToMany
+	private Set<Klant> klant; // een trainee werkt bij 1 of meer klanten
 
 	public int getLoon() {
 		return loon;
@@ -29,11 +31,11 @@ public class Trainee extends User {
 		this.type = type;
 	}
 
-	public ArrayList<Klant> getKlant() {
+	public Set<Klant> getKlant() {
 		return klant;
 	}
 
-	public void setKlant(ArrayList<Klant> klant) {
+	public void setKlant(Set<Klant> klant) {
 		this.klant = klant;
 	}
 

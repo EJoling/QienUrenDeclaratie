@@ -27,4 +27,9 @@ public class Formulier {
 	public void setPeriode(int periode) {
 		this.periode = periode;
 	}
+	public long getId() {
+		return id;
+	}
+	
+	
 }
