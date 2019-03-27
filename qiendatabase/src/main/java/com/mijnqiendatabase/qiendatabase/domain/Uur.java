@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Uur {
@@ -12,7 +13,10 @@ public class Uur {
 	private long id;
 	
 	private int waarde;
+	
+	@ManyToOne
 	private Uursoort uursoort;
+	@ManyToOne
 	private Klant klant;
 	
 	

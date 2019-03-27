@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Tijdsformulier extends Formulier{
@@ -13,6 +14,9 @@ public class Tijdsformulier extends Formulier{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@OneToMany
+	private Set<Dag> dagen;
+	
 	public Set<Dag> getDagen() {
 		return dagen;
 	}
@@ -22,5 +26,5 @@ public class Tijdsformulier extends Formulier{
 	public long getId() {
 		return id;
 	}
-	private Set<Dag> dagen;
+	
 }
