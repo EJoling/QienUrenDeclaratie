@@ -24,6 +24,10 @@ public class Kosten {
 	private int factuurnummer;
 	
 	
+	public void berekenen() {
+		
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -56,5 +60,7 @@ public class Kosten {
 	}
 	public Kostensoort getKostensoort() {
 		return kostensoort;
-	} 
+	}
+	
+	
 }

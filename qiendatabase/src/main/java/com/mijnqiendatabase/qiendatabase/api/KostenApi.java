@@ -18,6 +18,10 @@ import com.mijnqiendatabase.qiendatabase.service.KostenService;
 @Consumes(MediaType.APPLICATION_JSON)
 @Path("kosten")
 public class KostenApi {
+	
+	
+	
+	
 	@Autowired
 	private KostenService kostenservice;
 	
