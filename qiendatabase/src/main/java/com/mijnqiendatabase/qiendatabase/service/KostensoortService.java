@@ -15,21 +15,21 @@ import com.mijnqiendatabase.qiendatabase.repository.KostensoortRepository;
 public class KostensoortService {
 	
 	@Autowired
-	KostensoortRepository kostensoortrepository;
+	KostensoortRepository kostensoortRepository;
 	
 	public Kostensoort save(Kostensoort kostensoort) {
-		return kostensoortrepository.save(kostensoort);
+		return kostensoortRepository.save(kostensoort);
 	}
 	
 	public Iterable<Kostensoort> findAll(){
-		return kostensoortrepository.findAll();
+		return kostensoortRepository.findAll();
 	}
 	
 	public Optional<Kostensoort> findById(Long id){
-		return kostensoortrepository.findById(id);
+		return kostensoortRepository.findById(id);
 	}
 	
 	public void deleteById(Long id) { 
-		kostensoortrepository.deleteById(id);
+		kostensoortRepository.deleteById(id);
 	}
 }

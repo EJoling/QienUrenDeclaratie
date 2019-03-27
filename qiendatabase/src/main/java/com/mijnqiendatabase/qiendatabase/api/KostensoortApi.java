@@ -20,20 +20,20 @@ import com.mijnqiendatabase.qiendatabase.service.KostensoortService;
 public class KostensoortApi {
 	
 	@Autowired
-	private KostensoortService kostensoortservice;
+	private KostensoortService kostensoortService;
 	
 	@POST//create
 	public Response apiCreate(Kostensoort kostensoort) {
 		if(kostensoort.getId() !=0) {
 			return Response.status(Response.Status.CONFLICT).build();
 		}
-		return Response.ok(kostensoortservice.save(kostensoort)).build();
+		return Response.ok(kostensoortService.save(kostensoort)).build();
 	}
 	
 	@GET //Retrieve/read
 	@Path("{id}")
 	public Response apiGetById(@PathParam("id")long id) {
-		Optional<Kostensoort> kosten = kostensoortservice.findById(id);
+		Optional<Kostensoort> kosten = kostensoortService.findById(id);
 		if (kosten.isPresent() == false) {
            	return Response.status(Response.Status.NOT_FOUND).build();
      	} else {
@@ -43,7 +43,7 @@ public class KostensoortApi {
 	
 	@GET // Retrieve/Read
   	public Response apiGetAll() {
-         	return Response.ok(kostensoortservice.findAll()).build();
+         	return Response.ok(kostensoortService.findAll()).build();
   	}
 	
 	@PUT // Update
@@ -52,20 +52,20 @@ public class KostensoortApi {
          	if (kostensoort == null || kostensoort.getId() != id)
                	return Response.status(Response.Status.BAD_REQUEST).build();
  
-         	Optional<Kostensoort> oudDeclForm = kostensoortservice.findById(kostensoort.getId());
-         	if (!oudDeclForm.isPresent()) {
+         	Optional<Kostensoort> oldKostensoort = kostensoortService.findById(kostensoort.getId());
+         	if (!oldKostensoort.isPresent()) {
                	return Response.status(Response.Status.NOT_FOUND).build();
          	}
-         	return Response.ok(kostensoortservice.save(kostensoort)).build();
+         	return Response.ok(kostensoortService.save(kostensoort)).build();
   	}
  
   	@DELETE // Delete
   	@Path("{id}")
   	public Response apiDeleteById(@PathParam("id") long id) {
-         	if (kostensoortservice.findById(id).isPresent() == false) {
+         	if (kostensoortService.findById(id).isPresent() == false) {
                	return Response.status(Response.Status.NOT_FOUND).build();
          	} else {
-         		kostensoortservice.deleteById(id);
+         		kostensoortService.deleteById(id);
                	return Response.status(Response.Status.OK).build();
          	}
   	}
