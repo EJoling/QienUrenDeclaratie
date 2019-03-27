@@ -15,22 +15,22 @@ import javax.transaction.Transactional;
 @Transactional
 public class DeclaratieformulierService {
 	@Autowired
-	DeclaratieformulierRepository declaratieformulierrepository;
+	DeclaratieformulierRepository declaratieformulierRepository;
 	
 	public Declaratieformulier save(Declaratieformulier declaratieform) {
-		return declaratieformulierrepository.save(declaratieform);
+		return declaratieformulierRepository.save(declaratieform);
 	}
 	
 	public Iterable<Declaratieformulier> findAll(){
-		return declaratieformulierrepository.findAll();
+		return declaratieformulierRepository.findAll();
 	}
 	
 	public Optional<Declaratieformulier> findById(Long id){
-		return declaratieformulierrepository.findById(id);
+		return declaratieformulierRepository.findById(id);
 	}
 	
 	public void deleteById(Long id) {
-		declaratieformulierrepository.deleteById(id);
+		declaratieformulierRepository.deleteById(id);
 	}
 	
 }

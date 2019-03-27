@@ -19,20 +19,20 @@ import com.mijnqiendatabase.qiendatabase.service.DeclaratieformulierService;
 public class DeclaratieformulierApi {
 	
 	@Autowired
-	private DeclaratieformulierService declaratieformulierservice;
+	private DeclaratieformulierService declaratieformulierService;
 	
 	@POST//create
 	public Response apiCreate(Declaratieformulier declform) {
 		if(declform.getId() !=0) {
 			return Response.status(Response.Status.CONFLICT).build();
 		}
-		return Response.ok(declaratieformulierservice.save(declform)).build();
+		return Response.ok(declaratieformulierService.save(declform)).build();
 	}
 	
 	@GET //Retrieve/read
 	@Path("{id}")
 	public Response apiGetById(@PathParam("id")long id) {
-		Optional<Declaratieformulier> declaratieformulier = declaratieformulierservice.findById(id);
+		Optional<Declaratieformulier> declaratieformulier = declaratieformulierService.findById(id);
 		if (declaratieformulier.isPresent() == false) {
            	return Response.status(Response.Status.NOT_FOUND).build();
      	} else {
@@ -42,7 +42,7 @@ public class DeclaratieformulierApi {
 	
 	@GET // Retrieve/Read
   	public Response apiGetAll() {
-         	return Response.ok(declaratieformulierservice.findAll()).build();
+         	return Response.ok(declaratieformulierService.findAll()).build();
   	}
 	
 	@PUT // Update
@@ -51,20 +51,20 @@ public class DeclaratieformulierApi {
          	if (declform == null || declform.getId() != id)
                	return Response.status(Response.Status.BAD_REQUEST).build();
  
-         	Optional<Declaratieformulier> oudDeclForm = declaratieformulierservice.findById(declform.getId());
-         	if (!oudDeclForm.isPresent()) {
+         	Optional<Declaratieformulier> oldDeclForm = declaratieformulierService.findById(declform.getId());
+         	if (!oldDeclForm.isPresent()) {
                	return Response.status(Response.Status.NOT_FOUND).build();
          	}
-         	return Response.ok(declaratieformulierservice.save(declform)).build();
+         	return Response.ok(declaratieformulierService.save(declform)).build();
   	}
  
   	@DELETE // Delete
   	@Path("{id}")
   	public Response apiDeleteById(@PathParam("id") long id) {
-         	if (declaratieformulierservice.findById(id).isPresent() == false) {
+         	if (declaratieformulierService.findById(id).isPresent() == false) {
                	return Response.status(Response.Status.NOT_FOUND).build();
          	} else {
-         		declaratieformulierservice.deleteById(id);
+         		declaratieformulierService.deleteById(id);
                	return Response.status(Response.Status.OK).build();
          	}
   	}
