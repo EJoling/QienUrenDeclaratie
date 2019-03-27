@@ -3,69 +3,67 @@ package com.mijnqiendatabase.qiendatabase.api;
 import java.util.Optional;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.MediaType;
-
+import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.mijnqiendatabase.qiendatabase.domain.Admin;
-import com.mijnqiendatabase.qiendatabase.service.AdminService;;
+import com.mijnqiendatabase.qiendatabase.domain.Uur;
+import com.mijnqiendatabase.qiendatabase.service.UurService;
 
-@Path("admin")
+@Component
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Component
-public class AdminApi {
-
+@Path("uur")
+public class UurApi {
 	@Autowired
-	private AdminService adminService;
+	private UurService uurService;
 
 	@POST // Create
-	public Response apiCreate(Admin admin) {
-		if (admin.getId() != 0) {
+	public Response apiCreate(Uur uur) {
+		if (uur.getId() != 0) {
 			return Response.status(Response.Status.CONFLICT).build();
 		}
-		return Response.ok(adminService.save(admin)).build();
+		return Response.ok(uurService.save(uur)).build();
 	}
 
 	@GET // Retrieve/Read
 	@Path("{id}")
 	public Response apiGetById(@PathParam("id") long id) {
-		Optional<Admin> admin = adminService.findById(id);
-		if (admin.isPresent() == false) {
+		Optional<Uur> uur = uurService.findById(id);
+		if (uur.isPresent() == false) {
 			return Response.status(Response.Status.NOT_FOUND).build();
 		} else {
-			return Response.ok(admin.get()).build();
+			return Response.ok(uur.get()).build();
 		}
 	}
 	
 	@GET // Retrieve/Read
   	public Response apiGetAll() {
-         	return Response.ok(adminService.findAll()).build();
+         	return Response.ok(uurService.findAll()).build();
   	}
  
   	@PUT // Update
   	@Path("{id}")
-  	public Response apiUpdate(@PathParam("id") long id, Admin admin) {
-         	if (admin == null || admin.getId() != id)
+  	public Response apiUpdate(@PathParam("id") long id, Uur uur) {
+         	if (uur == null || uur.getId() != id)
                	return Response.status(Response.Status.BAD_REQUEST).build();
  
-         	Optional<Admin> oldAdmin = adminService.findById(admin.getId());
-         	if (!oldAdmin.isPresent()) {
+         	Optional<Uur> oldUur = uurService.findById(uur.getId());
+         	if (!oldUur.isPresent()) {
                	return Response.status(Response.Status.NOT_FOUND).build();
          	}
-         	return Response.ok(adminService.save(admin)).build();
+         	return Response.ok(uurService.save(uur)).build();
   	}
  
   	@DELETE // Delete
   	@Path("{id}")
   	public Response apiDeleteById(@PathParam("id") long id) {
-         	if (adminService.findById(id).isPresent() == false) {
+         	if (uurService.findById(id).isPresent() == false) {
                	return Response.status(Response.Status.NOT_FOUND).build();
          	} else {
-                adminService.deleteById(id);
+         		uurService.deleteById(id);
                	return Response.status(Response.Status.OK).build();
          	}
   	}
