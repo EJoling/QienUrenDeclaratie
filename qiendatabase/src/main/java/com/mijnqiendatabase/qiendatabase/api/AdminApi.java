@@ -22,6 +22,7 @@ public class AdminApi {
 	@Autowired
 	private AdminService adminService;
 
+	
 	@POST // Create
 	public Response apiCreate(Admin admin) {
 		if (admin.getId() != 0) {
