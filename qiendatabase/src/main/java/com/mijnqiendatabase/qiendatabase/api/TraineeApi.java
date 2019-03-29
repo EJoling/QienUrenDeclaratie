@@ -56,6 +56,7 @@ public class TraineeApi {
   	@PUT // Update
   	@Path("{id}")
   	public Response apiUpdate(@PathParam("id") long id, Trainee trainee) {
+  		System.out.println("in trainee");
          	if (trainee == null || trainee.getId() != id)
                	return Response.status(Response.Status.BAD_REQUEST).build();
  

@@ -15,7 +15,9 @@ public class Tijdsformulier extends Formulier{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@OneToMany (fetch = FetchType.EAGER)
+	
+	@OneToMany(fetch = FetchType.EAGER)
+
 	private Set<Dag> dagen;
 	
 	private AccordOptie accordStatus;
