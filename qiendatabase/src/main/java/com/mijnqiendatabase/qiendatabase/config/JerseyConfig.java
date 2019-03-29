@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.mijnqiendatabase.qiendatabase.api.AdminApi;
 import com.mijnqiendatabase.qiendatabase.api.DagApi;
+import com.mijnqiendatabase.qiendatabase.api.DeclaratieformulierApi;
 import com.mijnqiendatabase.qiendatabase.api.KlantApi;
 import com.mijnqiendatabase.qiendatabase.api.KostenApi;
 import com.mijnqiendatabase.qiendatabase.api.KostensoortApi;
@@ -19,14 +20,16 @@ import javax.ws.rs.ApplicationPath;
 @ApplicationPath("/api")
 public class JerseyConfig extends ResourceConfig {
 	public JerseyConfig() {
-		register(KostenApi.class); // commando voor aanroepen Api
-		register(KostensoortApi.class);
-		register(AdminApi.class);
-		register(DagApi.class);
-		register(KlantApi.class);
-		register(TijdsformulierApi.class);
-		register(TraineeApi.class);
-		register(UurApi.class);
-		register(UursoortApi.class);
+
+		register(AdminApi.class); //--> commando voor aanroepen Api
+		register(DagApi.class); //--> commando voor aanroepen Api
+		register(DeclaratieformulierApi.class); //--> commando voor aanroepen Api
+		register(KlantApi.class); //--> commando voor aanroepen Api
+		register(KostenApi.class); //--> commando voor aanroepen Api
+		register(KostensoortApi.class); //--> commando voor aanroepen Api
+		register(TijdsformulierApi.class); //--> commando voor aanroepen Api
+		register(TraineeApi.class); //--> commando voor aanroepen Api
+		register(UurApi.class); //--> commando voor aanroepen Api
+		register(UursoortApi.class); //--> commando voor aanroepen Api
 	}
 }
