@@ -3,70 +3,68 @@ package com.mijnqiendatabase.qiendatabase.api;
 import java.util.Optional;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.MediaType;
-
+import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.mijnqiendatabase.qiendatabase.domain.Admin;
-import com.mijnqiendatabase.qiendatabase.service.AdminService;;
+import com.mijnqiendatabase.qiendatabase.domain.Dag;
+import com.mijnqiendatabase.qiendatabase.service.DagService;
 
-@Path("admin")
+@Component
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Component
-public class AdminApi {
+@Path("dag")
+public class DagApi {
 
 	@Autowired
-	private AdminService adminService;
+	private DagService dagService;
 
-	
 	@POST // Create
-	public Response apiCreate(Admin admin) {
-		if (admin.getId() != 0) {
+	public Response apiCreate(Dag dag) {
+		if (dag.getId() != 0) {
 			return Response.status(Response.Status.CONFLICT).build();
 		}
-		return Response.ok(adminService.save(admin)).build();
+		return Response.ok(dagService.save(dag)).build();
 	}
 
 	@GET // Retrieve/Read
 	@Path("{id}")
 	public Response apiGetById(@PathParam("id") long id) {
-		Optional<Admin> admin = adminService.findById(id);
-		if (admin.isPresent() == false) {
+		Optional<Dag> dag = dagService.findById(id);
+		if (dag.isPresent() == false) {
 			return Response.status(Response.Status.NOT_FOUND).build();
 		} else {
-			return Response.ok(admin.get()).build();
+			return Response.ok(dag.get()).build();
 		}
 	}
 	
 	@GET // Retrieve/Read
   	public Response apiGetAll() {
-         	return Response.ok(adminService.findAll()).build();
+         	return Response.ok(dagService.findAll()).build();
   	}
  
   	@PUT // Update
   	@Path("{id}")
-  	public Response apiUpdate(@PathParam("id") long id, Admin admin) {
-         	if (admin == null || admin.getId() != id)
+  	public Response apiUpdate(@PathParam("id") long id, Dag dag) {
+         	if (dag == null || dag.getId() != id)
                	return Response.status(Response.Status.BAD_REQUEST).build();
  
-         	Optional<Admin> oldAdmin = adminService.findById(admin.getId());
-         	if (!oldAdmin.isPresent()) {
+         	Optional<Dag> oldDag = dagService.findById(dag.getId());
+         	if (!oldDag.isPresent()) {
                	return Response.status(Response.Status.NOT_FOUND).build();
          	}
-         	return Response.ok(adminService.save(admin)).build();
+         	return Response.ok(dagService.save(dag)).build();
   	}
  
   	@DELETE // Delete
   	@Path("{id}")
   	public Response apiDeleteById(@PathParam("id") long id) {
-         	if (adminService.findById(id).isPresent() == false) {
+         	if (dagService.findById(id).isPresent() == false) {
                	return Response.status(Response.Status.NOT_FOUND).build();
          	} else {
-                adminService.deleteById(id);
+         		dagService.deleteById(id);
                	return Response.status(Response.Status.OK).build();
          	}
   	}

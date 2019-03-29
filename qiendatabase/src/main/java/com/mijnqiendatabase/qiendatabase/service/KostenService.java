@@ -16,22 +16,22 @@ import com.mijnqiendatabase.qiendatabase.repository.KostenRepository;
 @Transactional
 public class KostenService {
 	@Autowired
-	KostenRepository kostenrepository;
+	KostenRepository kostenRepository;
 	
 	public Kosten save(Kosten kosten) {
-		return kostenrepository.save(kosten);
+		return kostenRepository.save(kosten);
 	}
 	
 	public Iterable<Kosten> findAll(){
-		return kostenrepository.findAll();
+		return kostenRepository.findAll();
 	}
 	
 	public Optional<Kosten> findById(Long id){
-		return kostenrepository.findById(id);
+		return kostenRepository.findById(id);
 	}
 	
 	public void deleteById(Long id) { 
-		kostenrepository.deleteById(id);
+		kostenRepository.deleteById(id);
 	}
 	
 }

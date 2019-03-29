@@ -14,7 +14,7 @@ public class Uursoort {
 	private boolean declarabel;
 	private String omschrijving;
 	
-	public boolean isDeclarabel() {
+	public boolean getDeclarabel() {
 		return declarabel;
 	}
 	public void setDeclarabel(boolean declarabel) {

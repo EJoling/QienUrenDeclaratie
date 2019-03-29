@@ -11,10 +11,10 @@ public class Trainee extends User {
 	private int loon; // in centen
 	private int type; // bijv Masterclass of gedetacheerd, ivm reiskostenvergoeding
 //	private Set<TijdsFormulier> tijdsformulier;
-	@OneToMany
-	private Set<Declaratieformulier> declaraties;
-	@OneToMany
-	private Set<Klant> klant; // een trainee werkt bij 1 of meer klanten
+//	@OneToMany
+//	private Set<Declaratieformulier> declaraties;
+//	@OneToMany
+//	private Set<Klant> klant; // een trainee werkt bij 1 of meer klanten
 
 	public int getLoon() {
 		return loon;
@@ -32,13 +32,13 @@ public class Trainee extends User {
 		this.type = type;
 	}
 
-	public Set<Klant> getKlant() {
-		return klant;
-	}
-
-	public void setKlant(Set<Klant> klant) {
-		this.klant = klant;
-	}
+//	public Set<Klant> getKlant() {
+//		return klant;
+//	}
+//
+//	public void setKlant(Set<Klant> klant) {
+//		this.klant = klant;
+//	}
 
 //	public ArrayList<TijdsFormulier> getTijdsformulier() {
 //		return tijdsformulier;
@@ -46,11 +46,11 @@ public class Trainee extends User {
 //	public void setTijdsformulier(ArrayList<TijdsFormulier> tijdsformulier) {
 //		this.tijdsformulier = tijdsformulier;
 //	}
-	public Set<Declaratieformulier> getDeclaraties() {
-		return declaraties;
-	}
-	public void setDeclaraties(Set<Declaratieformulier> declaraties) {
-		this.declaraties = declaraties;
-	}
+//	public Set<Declaratieformulier> getDeclaraties() {
+//		return declaraties;
+//	}
+//	public void setDeclaraties(Set<Declaratieformulier> declaraties) {
+//		this.declaraties = declaraties;
+//	}
 
 }
