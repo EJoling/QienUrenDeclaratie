@@ -3,6 +3,7 @@ package com.mijnqiendatabase.qiendatabase.domain;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -10,10 +11,12 @@ public class Trainee extends User {
 
 	private int loon; // in centen
 	private int type; // bijv Masterclass of gedetacheerd, ivm reiskostenvergoeding
-//	private Set<TijdsFormulier> tijdsformulier;
-	@OneToMany
+	
+	@OneToMany (fetch = FetchType.EAGER)
+	private Set<Tijdsformulier> tijdsformulier;
+	@OneToMany (fetch = FetchType.EAGER)
 	private Set<Declaratieformulier> declaraties;
-	@OneToMany
+	@OneToMany (fetch = FetchType.EAGER)
 	private Set<Klant> klant; // een trainee werkt bij 1 of meer klanten
 
 	public int getLoon() {
@@ -40,12 +43,12 @@ public class Trainee extends User {
 		this.klant = klant;
 	}
 
-//	public ArrayList<TijdsFormulier> getTijdsformulier() {
-//		return tijdsformulier;
-//	}
-//	public void setTijdsformulier(ArrayList<TijdsFormulier> tijdsformulier) {
-//		this.tijdsformulier = tijdsformulier;
-//	}
+	public Set<Tijdsformulier> getTijdsformulier() {
+		return tijdsformulier;
+	}
+	public void setTijdsformulier(Set<Tijdsformulier> tijdsformulier) {
+		this.tijdsformulier = tijdsformulier;
+	}
 	public Set<Declaratieformulier> getDeclaraties() {
 		return declaraties;
 	}

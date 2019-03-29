@@ -20,6 +20,7 @@ import javax.ws.rs.ApplicationPath;
 @ApplicationPath("/api")
 public class JerseyConfig extends ResourceConfig {
 	public JerseyConfig() {
+
 		register(AdminApi.class); //--> commando voor aanroepen Api
 		register(DagApi.class); //--> commando voor aanroepen Api
 		register(DeclaratieformulierApi.class); //--> commando voor aanroepen Api

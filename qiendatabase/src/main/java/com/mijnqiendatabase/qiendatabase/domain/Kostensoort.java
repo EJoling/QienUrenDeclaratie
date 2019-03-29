@@ -15,6 +15,8 @@ public class Kostensoort {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	
+
 	private int type; //het type kosten (1 = auto, 2 = ov, 3 = overig)
 	private boolean belastingvrij;
 	private boolean declarabel;
