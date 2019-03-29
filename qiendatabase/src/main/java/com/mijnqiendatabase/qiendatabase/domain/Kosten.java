@@ -3,6 +3,7 @@ package com.mijnqiendatabase.qiendatabase.domain;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +16,7 @@ public class Kosten {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Kostensoort kostensoort;
 	private int bedrag; //in eurocenten. dit bedrag moet vast staan voor auto (0,19 euro voor nu) 
 						//admin moet dit bedrag kunnen veranderen. Voor alle andere kosten is het bedrag opgegeven door de trainee.
@@ -60,6 +61,10 @@ public class Kosten {
 	}
 	public Kostensoort getKostensoort() {
 		return kostensoort;
+	}
+	
+	public void setKostensoort(Kostensoort kostensoort) {
+		this.kostensoort = kostensoort;
 	}
 	
 	
