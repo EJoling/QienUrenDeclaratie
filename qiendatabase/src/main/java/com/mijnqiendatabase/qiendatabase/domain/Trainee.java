@@ -6,15 +6,17 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Trainee extends User {
 
 	private int loon; // in centen
 	private int type; // bijv Masterclass of gedetacheerd, ivm reiskostenvergoeding
 	
-	@OneToMany (fetch = FetchType.EAGER)
+	@JsonIgnore @OneToMany (fetch = FetchType.EAGER)
 	private Set<Tijdsformulier> tijdsformulier;
-	@OneToMany (fetch = FetchType.EAGER)
+	@JsonIgnore @OneToMany (fetch = FetchType.EAGER)
 	private Set<Declaratieformulier> declaraties;
 	@OneToMany (fetch = FetchType.EAGER)
 	private Set<Klant> klant; // een trainee werkt bij 1 of meer klanten
