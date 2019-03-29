@@ -1,13 +1,12 @@
 package com.mijnqiendatabase.qiendatabase.domain;
 
-import java.util.ArrayList;
-import java.util.Set;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+
 
 @Entity
 public class Kostensoort {
@@ -16,6 +15,8 @@ public class Kostensoort {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	
+
 	private int type; //het type kosten (1 = auto, 2 = ov, 3 = overig)
 	private boolean belastingvrij;
 	private boolean declarabel;
