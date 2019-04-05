@@ -43,6 +43,8 @@ public class UurApi {
   	public Response apiGetAll() {
          	return Response.ok(uurService.findAll()).build();
   	}
+	
+	
  
   	@PUT // Update
   	@Path("{id}")
@@ -50,11 +52,33 @@ public class UurApi {
          	if (uur == null || uur.getId() != id)
                	return Response.status(Response.Status.BAD_REQUEST).build();
  
-         	Optional<Uur> oldUur = uurService.findById(uur.getId());
+         	Optional<Uur> oldUur = uurService.findById(id);
          	if (!oldUur.isPresent()) {
                	return Response.status(Response.Status.NOT_FOUND).build();
          	}
-         	return Response.ok(uurService.save(uur)).build();
+         	Uur target = oldUur.get();
+         	target.setAccordStatus(uur.getAccordStatus());
+         	target.setAantal(uur.getAantal());
+         	target.setFactuurDatum(uur.getFactuurDatum());
+         	target.setWaarde(uur.getWaarde());
+         	System.out.println("check in uur");
+         	return Response.ok(uurService.save(target)).build();
+  	}
+  	
+  	@PUT // Update akkoord
+  	@Path("{id}/akkoordstatus")
+  	public Response apiUpdateAkkoord(@PathParam("id") long id, Uur uur) {
+         	if (uur == null || uur.getId() != id)
+               	return Response.status(Response.Status.BAD_REQUEST).build();
+ 
+         	Optional<Uur> oldUur = uurService.findById(id);
+         	if (!oldUur.isPresent()) {
+               	return Response.status(Response.Status.NOT_FOUND).build();
+         	}
+         	Uur target = oldUur.get();
+         	target.setAccordStatus(uur.getAccordStatus());
+         	System.out.println("check in uur");
+         	return Response.ok(uurService.save(target)).build();
   	}
  
   	@DELETE // Delete

@@ -1,6 +1,8 @@
 package com.mijnqiendatabase.qiendatabase.api;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -18,7 +20,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mijnqiendatabase.qiendatabase.domain.Trainee;
-import com.mijnqiendatabase.qiendatabase.service.TraineeService;;
+import com.mijnqiendatabase.qiendatabase.domain.Uur;
+import com.mijnqiendatabase.qiendatabase.service.TraineeService;
+import com.mijnqiendatabase.qiendatabase.service.UurService;;
 
 @Path("trainee")
 @Produces(MediaType.APPLICATION_JSON)
@@ -28,6 +32,8 @@ public class TraineeApi {
 
 	@Autowired
 	private TraineeService traineeService;
+	@Autowired
+	private UurService uurService;
 
 	@POST // Create
 	public Response apiCreate(Trainee trainee) {
@@ -56,15 +62,26 @@ public class TraineeApi {
   	@PUT // Update
   	@Path("{id}")
   	public Response apiUpdate(@PathParam("id") long id, Trainee trainee) {
-  		System.out.println("in trainee");
-         	if (trainee == null || trainee.getId() != id)
-               	return Response.status(Response.Status.BAD_REQUEST).build();
- 
+  		System.out.println("in trainee" + trainee.getId());
+         	if (trainee == null || trainee.getId() != id) {
+               	System.out.println("bad request?");
+         		return Response.status(Response.Status.BAD_REQUEST).build();
+         	}
          	Optional<Trainee> oldTrainee = traineeService.findById(trainee.getId());
          	if (!oldTrainee.isPresent()) {
+         		System.out.println("not found?");
                	return Response.status(Response.Status.NOT_FOUND).build();
          	}
-         	return Response.ok(traineeService.save(trainee)).build();
+         	Set<Uur> nieuweuren = new HashSet<>();
+         	for(Uur uur : trainee.getUren()) {
+         		System.out.println(trainee.getUren());
+         		nieuweuren.add(uurService.save(uur));
+         	}
+         	trainee.setUren(nieuweuren);
+         	Trainee target = oldTrainee.get();
+         	target.setUren(trainee.getUren());
+         	System.out.println(target.getUren());
+         	return Response.ok(traineeService.save(target)).build();
   	}
  
   	@DELETE // Delete
