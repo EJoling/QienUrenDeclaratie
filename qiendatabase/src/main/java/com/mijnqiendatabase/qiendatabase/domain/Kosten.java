@@ -1,6 +1,6 @@
 package com.mijnqiendatabase.qiendatabase.domain;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,7 +21,7 @@ public class Kosten {
 	private int bedrag; //in eurocenten. dit bedrag moet vast staan voor auto (0,19 euro voor nu) 
 						//admin moet dit bedrag kunnen veranderen. Voor alle andere kosten is het bedrag opgegeven door de trainee.
 	private int aantal;//het aantal km's, bij ov is dit standaard 1.
-	private LocalDateTime factuurDatum = LocalDateTime.now(); //krijgt huidige datum
+	private LocalDate factuurDatum; //krijgt huidige datum
 	private int factuurnummer;
 	
 	
@@ -47,10 +47,10 @@ public class Kosten {
 	public void setAantal(int aantal) {
 		this.aantal = aantal;
 	}
-	public LocalDateTime getFactuurDatum() {
+	public LocalDate getFactuurDatum() {
 		return factuurDatum;
 	}
-	public void setFactuurDatum(LocalDateTime factuurDatum) {
+	public void setFactuurDatum(LocalDate factuurDatum) {
 		this.factuurDatum = factuurDatum;
 	}
 	public int getFactuurnummer() {
