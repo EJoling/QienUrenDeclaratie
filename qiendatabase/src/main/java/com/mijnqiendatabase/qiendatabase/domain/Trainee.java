@@ -20,6 +20,25 @@ public class Trainee extends User {
 	private Set<Declaratieformulier> declaraties;
 	@OneToMany (fetch = FetchType.EAGER)
 	private Set<Klant> klant; // een trainee werkt bij 1 of meer klanten
+	@OneToMany (fetch = FetchType.EAGER) //geen idee of eager fetchen nodig is, anders haal ik het nog wel weg
+	private Set<Uur> uren; // nieuw, een trainee heeft gewerkte uren ipv tijdsformulieren
+	private boolean heeftUrenVerstuurd;
+
+	public boolean isHeeftUrenVerstuurd() {
+		return heeftUrenVerstuurd;
+	}
+
+	public void setHeeftUrenVerstuurd(boolean heeftUrenVerstuurd) {
+		this.heeftUrenVerstuurd = heeftUrenVerstuurd;
+	}
+
+	public Set<Uur> getUren() {
+		return uren;
+	}
+
+	public void setUren(Set<Uur> uren) {
+		this.uren = uren;
+	}
 
 	public int getLoon() {
 		return loon;
