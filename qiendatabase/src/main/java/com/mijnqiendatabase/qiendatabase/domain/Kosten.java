@@ -1,6 +1,6 @@
 package com.mijnqiendatabase.qiendatabase.domain;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,21 +14,17 @@ public class Kosten {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String waarde; // Openbaar Vervoer, Overige kosten, Auto
-	private LocalDateTime factuurDatum; //krijgt huidige datum
+	private LocalDate factuurDatum; //krijgt huidige datum
 	private int aantalKM;//het aantal km's, bij ov is dit standaard 1.
-	private double bedrag;	
+	private int bedrag;	//in eurocenten. dit bedrag moet vast staan voor auto (0,19 euro voor nu) 
+						//admin moet dit bedrag kunnen veranderen. Voor alle andere kosten is het bedrag opgegeven door de trainee.
 	private String status;
-	
 	
 //	private LocalDateTime factuurDatum = LocalDateTime.now(); //krijgt huidige datum
 //	@ManyToOne(fetch = FetchType.EAGER)
 //	private Kostensoort kostensoort;
 	
 	
-	public LocalDateTime getFactuurDatum() {
-		return factuurDatum;
-	}
-
 	public String getStatus() {
 		return status;
 	}
@@ -41,11 +37,15 @@ public class Kosten {
 		return bedrag;
 	}
 
-	public void setBedrag(double bedrag) {
+	public void setBedrag(int bedrag) {
 		this.bedrag = bedrag;
 	}
 
-	public void setFactuurDatum(LocalDateTime factuurDatum) {
+	public LocalDate getFactuurDatum() {
+		return factuurDatum;
+	}
+	public void setFactuurDatum(LocalDate factuurDatum) {
+
 		this.factuurDatum = factuurDatum;
 	}
 
