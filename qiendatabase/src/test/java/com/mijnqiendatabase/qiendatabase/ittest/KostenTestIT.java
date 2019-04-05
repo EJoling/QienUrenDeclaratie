@@ -23,7 +23,7 @@ public class KostenTestIT {
 	public void testSave() {
 		// Arrange
 		Kosten kosten = new Kosten();
-		kosten.setAantal(8);
+		kosten.setAantalKM(8);
 		// Act
 		this.kostenapi.apiCreate(kosten);
 		// Assert
@@ -32,7 +32,7 @@ public class KostenTestIT {
 		int size = 0;
 		for (Kosten element : Kostenlijst) {
 			size++;
-			Assert.assertEquals(element.getAantal(), 8);
+			Assert.assertEquals(element.getAantalKM(), 8);
 		}//end for
 		Assert.assertEquals(1, size);
 	}//end testSave

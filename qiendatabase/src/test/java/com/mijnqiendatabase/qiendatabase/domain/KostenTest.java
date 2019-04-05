@@ -13,9 +13,9 @@ public class KostenTest {
 	@Test
 	public void testGetAndSetForAantal() {
 		
-		this.kosten.setAantal(1);
+		this.kosten.setAantalKM(1);
 		
-		Assert.assertEquals(1, this.kosten.getAantal());
+		Assert.assertEquals(1, this.kosten.getAantalKM());
 	}
 
 	@Test
@@ -26,13 +26,7 @@ public class KostenTest {
 		Assert.assertEquals(6, this.kosten.getBedrag());
 	}
 	
-	@Test
-	public void testGetAndSetForFactuurnummer() {
-		
-		this.kosten.setFactuurnummer(10);
-		
-		Assert.assertEquals(10, this.kosten.getFactuurnummer());
-	}
+	
 	
 	@Test
 	public void testGetAndSetForFactuurDatum() {
