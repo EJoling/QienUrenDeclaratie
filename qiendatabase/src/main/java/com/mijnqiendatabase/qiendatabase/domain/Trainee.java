@@ -23,7 +23,7 @@ public class Trainee extends User {
 	private Set<Uur> uren; // nieuw, een trainee heeft gewerkte uren ipv tijdsformulieren
 	private boolean heeftUrenVerstuurd;
 
-	public boolean isHeeftUrenVerstuurd() {
+	public boolean getHeeftUrenVerstuurd() {
 		return heeftUrenVerstuurd;
 	}
 
