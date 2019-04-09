@@ -9,6 +9,7 @@ import com.mijnqiendatabase.qiendatabase.api.DeclaratieformulierApi;
 import com.mijnqiendatabase.qiendatabase.api.KlantApi;
 import com.mijnqiendatabase.qiendatabase.api.KostenApi;
 import com.mijnqiendatabase.qiendatabase.api.KostensoortApi;
+import com.mijnqiendatabase.qiendatabase.api.LoginApi;
 //import com.mijnqiendatabase.qiendatabase.api.TijdsformulierApi;
 import com.mijnqiendatabase.qiendatabase.api.TraineeApi;
 import com.mijnqiendatabase.qiendatabase.api.UurApi;
@@ -25,9 +26,9 @@ public class JerseyConfig extends ResourceConfig {
 		register(DagApi.class); //--> commando voor aanroepen Api
 		register(DeclaratieformulierApi.class); //--> commando voor aanroepen Api
 		register(KlantApi.class); //--> commando voor aanroepen Api
-		register(KostenApi.class); //--> commando voor aanroepen Api
+		register(LoginApi.class); //--> commando voor aanroepen Api
 		register(KostensoortApi.class); //--> commando voor aanroepen Api
-//		register(TijdsformulierApi.class); //--> commando voor aanroepen Api
+//		register(UserApi.class); //--> commando voor aanroepen Api
 		register(TraineeApi.class); //--> commando voor aanroepen Api
 		register(UurApi.class); //--> commando voor aanroepen Api
 		register(UursoortApi.class); //--> commando voor aanroepen Api
