@@ -7,5 +7,6 @@ import com.mijnqiendatabase.qiendatabase.domain.Trainee;
 
 @Repository
 public interface TraineeRepository extends CrudRepository<Trainee, Long> {
-
+	
+	
 }

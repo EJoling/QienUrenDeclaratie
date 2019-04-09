@@ -16,7 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Uur {
+public class Uur implements Comparable<Uur>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -77,6 +77,10 @@ public class Uur {
 	public void setAccordStatus(AccordOptie accordStatus) {
 		System.out.println(accordStatus);
 	this.accordStatus = accordStatus;
+	}
+	@Override
+	public int compareTo(Uur uur) {
+		return this.factuurDatum.compareTo(uur.getFactuurDatum());
 	}
 	
 }

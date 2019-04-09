@@ -61,7 +61,7 @@ public class UurApi {
          	target.setAantal(uur.getAantal());
          	target.setFactuurDatum(uur.getFactuurDatum());
          	target.setWaarde(uur.getWaarde());
-         	System.out.println("check in uur");
+         	System.out.println("check in uur algemeen");
          	return Response.ok(uurService.save(target)).build();
   	}
   	
