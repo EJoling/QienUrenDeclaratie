@@ -58,6 +58,8 @@ public class TraineeApi {
   	public Response apiGetAll() {
          	return Response.ok(traineeService.findAll()).build();
   	}
+	
+
  
   	@PUT // Update
   	@Path("{id}")
@@ -72,15 +74,17 @@ public class TraineeApi {
          		System.out.println("not found?");
                	return Response.status(Response.Status.NOT_FOUND).build();
          	}
-         	Set<Uur> nieuweuren = new HashSet<>();
+         	Set<Uur> nieuweuren = new HashSet();
          	for(Uur uur : trainee.getUren()) {
          		System.out.println(trainee.getUren());
          		nieuweuren.add(uurService.save(uur));
+         		System.out.println(uur.getFactuurDatum());
          	}
          	trainee.setUren(nieuweuren);
          	Trainee target = oldTrainee.get();
          	target.setUren(trainee.getUren());
          	System.out.println(target.getUren());
+
          	return Response.ok(traineeService.save(target)).build();
   	}
  
