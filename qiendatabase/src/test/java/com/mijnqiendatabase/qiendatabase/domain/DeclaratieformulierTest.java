@@ -14,7 +14,7 @@ public class DeclaratieformulierTest {
 		
 		this.declaratieformulier.setTest("WelDus");
 		
-		Assert.assertEquals("WelDus", this.declaratieformulier.getTest());
+		Assert.assertEquals("NietDus", this.declaratieformulier.getTest());
 		
 	}
 
