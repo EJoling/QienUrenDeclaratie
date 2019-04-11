@@ -32,5 +32,6 @@ public class JerseyConfig extends ResourceConfig {
 		register(TraineeApi.class); //--> commando voor aanroepen Api
 		register(UurApi.class); //--> commando voor aanroepen Api
 		register(UursoortApi.class); //--> commando voor aanroepen Api
+		register(KostenApi.class); //--> commando voor aanroepen Api
 	}
 }
