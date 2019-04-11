@@ -33,7 +33,7 @@ public class Kosten {
 		this.status = status;
 	}
 
-	public double getBedrag() {
+	public int getBedrag() {
 		return bedrag;
 	}
 
