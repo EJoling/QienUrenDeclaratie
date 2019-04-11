@@ -6,6 +6,8 @@ import java.time.LocalDate;
 
 import org.junit.Assert;
 
+import javax.ws.rs.HEAD;
+
 public class KostenTest {
 
 	private Kosten kosten = new Kosten();
