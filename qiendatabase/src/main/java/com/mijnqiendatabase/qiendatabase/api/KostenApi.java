@@ -19,9 +19,6 @@ import com.mijnqiendatabase.qiendatabase.service.KostenService;
 @Path("kosten")
 public class KostenApi {
 	
-	
-	
-	
 	@Autowired
 	private KostenService kostenService;
 	

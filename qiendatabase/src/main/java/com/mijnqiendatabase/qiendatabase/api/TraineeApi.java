@@ -19,10 +19,12 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.mijnqiendatabase.qiendatabase.domain.Kosten;
 import com.mijnqiendatabase.qiendatabase.domain.Trainee;
 import com.mijnqiendatabase.qiendatabase.domain.Uur;
+import com.mijnqiendatabase.qiendatabase.service.KostenService;
 import com.mijnqiendatabase.qiendatabase.service.TraineeService;
-import com.mijnqiendatabase.qiendatabase.service.UurService;;
+import com.mijnqiendatabase.qiendatabase.service.UurService;
 
 @Path("trainee")
 @Produces(MediaType.APPLICATION_JSON)
@@ -30,6 +32,9 @@ import com.mijnqiendatabase.qiendatabase.service.UurService;;
 @Component
 public class TraineeApi {
 
+	// Jordi: kosten deel toegevoegd
+	@Autowired
+	private KostenService kostenService;
 	@Autowired
 	private TraineeService traineeService;
 	@Autowired
@@ -65,15 +70,20 @@ public class TraineeApi {
   	@Path("{id}")
   	public Response apiUpdate(@PathParam("id") long id, Trainee trainee) {
   		System.out.println("in trainee" + trainee.getId());
+  		
+  			// BAD REQUEST
          	if (trainee == null || trainee.getId() != id) {
                	System.out.println("bad request?");
          		return Response.status(Response.Status.BAD_REQUEST).build();
          	}
          	Optional<Trainee> oldTrainee = traineeService.findById(trainee.getId());
+         	
+         	// NOT FOUND
          	if (!oldTrainee.isPresent()) {
          		System.out.println("not found?");
                	return Response.status(Response.Status.NOT_FOUND).build();
          	}
+         	// 
          	Set<Uur> nieuweuren = new HashSet();
          	for(Uur uur : trainee.getUren()) {
          		System.out.println(trainee.getUren());
@@ -84,6 +94,17 @@ public class TraineeApi {
          	Trainee target = oldTrainee.get();
          	target.setUren(trainee.getUren());
          	System.out.println(target.getUren());
+         	
+         	// Jordi: basically copy paste, maar met kosten ipv uren
+         	Set<Kosten> nieuwekosten = new HashSet();
+         	for(Kosten k : trainee.getKosten()) {
+         		System.out.println("trainee.getKosten():" + trainee.getKosten());
+         		nieuwekosten.add(kostenService.save(k));
+         		System.out.println("k.getFactuurDatum()" + k.getFactuurDatum());
+         	}
+         	trainee.setKosten(nieuwekosten);
+         	target.setKosten(trainee.getKosten());
+         	System.out.println(target.getKosten());
 
          	return Response.ok(traineeService.save(target)).build();
   	}

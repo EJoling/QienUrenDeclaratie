@@ -21,6 +21,17 @@ public class Trainee extends User {
 //	private Set<Klant> klant; // een trainee werkt bij 1 of meer klanten
 	@OneToMany (fetch = FetchType.EAGER) //geen idee of eager fetchen nodig is, anders haal ik het nog wel weg
 	private Set<Uur> uren; // nieuw, een trainee heeft gewerkte uren ipv tijdsformulieren
+	@OneToMany (fetch = FetchType.EAGER)
+	private Set<Kosten> kosten; // Jordi
+	
+	public Set<Kosten> getKosten() {
+		return kosten;
+	}
+
+	public void setKosten(Set<Kosten> kosten) {
+		this.kosten = kosten;
+	}
+
 	private boolean heeftUrenVerstuurd;
 
 	public boolean getHeeftUrenVerstuurd() {
@@ -54,6 +65,8 @@ public class Trainee extends User {
 	public void setUren(Set<Uur> uren) {
 	this.uren = uren;
 	}
+	
+//	Jordi: oud, declaratieformulieren gebruiken we niet meer
 //	public Set<Declaratieformulier> getDeclaraties() {
 //		return declaraties;
 //	}
