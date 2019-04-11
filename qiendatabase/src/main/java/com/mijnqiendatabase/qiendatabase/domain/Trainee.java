@@ -14,17 +14,24 @@ public class Trainee extends User {
 	private int loon; // in centen
 	private int type; // bijv Masterclass of gedetacheerd, ivm reiskostenvergoeding
 	
-
-//	@JsonIgnore @OneToMany (fetch = FetchType.EAGER)
-//	private Set<Declaratieformulier> declaraties;
 //	@OneToMany (fetch = FetchType.EAGER)
 //	private Set<Klant> klant; // een trainee werkt bij 1 of meer klanten
 	@OneToMany (fetch = FetchType.EAGER) //geen idee of eager fetchen nodig is, anders haal ik het nog wel weg
 	private Set<Uur> uren; // nieuw, een trainee heeft gewerkte uren ipv tijdsformulieren
+	@OneToMany (fetch = FetchType.EAGER) //geen idee of eager fetchen nodig is, anders haal ik het nog wel weg
+	private Set<Kosten> kosten; // nieuw, een trainee heeft gewerkte uren ipv tijdsformulieren
 	private boolean heeftUrenVerstuurd;
 
 	public boolean getHeeftUrenVerstuurd() {
 		return heeftUrenVerstuurd;
+	}
+
+	public Set<Kosten> getKosten() {
+		return kosten;
+	}
+
+	public void setKosten(Set<Kosten> kosten) {
+		this.kosten = kosten;
 	}
 
 	public void setHeeftUrenVerstuurd(boolean heeftUrenVerstuurd) {
