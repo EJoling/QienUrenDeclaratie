@@ -12,7 +12,7 @@ public class DeclaratieformulierTest {
 	@Test
 	public void testGetAndSetFortest() {
 		
-		this.declaratieformulier.setTest("NietDus");
+		this.declaratieformulier.setTest("WelDus");
 		
 		Assert.assertEquals("WelDus", this.declaratieformulier.getTest());
 		

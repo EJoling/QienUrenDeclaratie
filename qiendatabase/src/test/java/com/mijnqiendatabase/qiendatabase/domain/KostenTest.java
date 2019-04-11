@@ -23,7 +23,7 @@ public class KostenTest {
 		
 		this.kosten.setBedrag(6);
 		
-		Assert.assertEquals(6, this.kosten.getBedrag());
+		Assert.assertEquals(6.0,this.kosten.getBedrag(),0.0);
 	}
 	
 	
