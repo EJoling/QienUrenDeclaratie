@@ -19,8 +19,10 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.mijnqiendatabase.qiendatabase.domain.Kosten;
 import com.mijnqiendatabase.qiendatabase.domain.Trainee;
 import com.mijnqiendatabase.qiendatabase.domain.Uur;
+import com.mijnqiendatabase.qiendatabase.service.KostenService;
 import com.mijnqiendatabase.qiendatabase.service.TraineeService;
 import com.mijnqiendatabase.qiendatabase.service.UurService;;
 
@@ -34,6 +36,8 @@ public class TraineeApi {
 	private TraineeService traineeService;
 	@Autowired
 	private UurService uurService;
+	@Autowired
+	private KostenService kostenService;
 
 	@POST // Create
 	public Response apiCreate(Trainee trainee) {
@@ -64,7 +68,7 @@ public class TraineeApi {
   	@PUT // Update
   	@Path("{id}")
   	public Response apiUpdate(@PathParam("id") long id, Trainee trainee) {
-  		System.out.println("in trainee" + trainee.getId());
+  		System.out.println("in trainee Uren " + trainee.getId());
          	if (trainee == null || trainee.getId() != id) {
                	System.out.println("bad request?");
          		return Response.status(Response.Status.BAD_REQUEST).build();
@@ -87,8 +91,8 @@ public class TraineeApi {
 
          	return Response.ok(traineeService.save(target)).build();
   	}
- 
-  	@DELETE // Delete
+  	
+  	@DELETE // Delete Trainee
   	@Path("{id}")
   	public Response apiDeleteById(@PathParam("id") long id) {
          	if (traineeService.findById(id).isPresent() == false) {
@@ -98,5 +102,5 @@ public class TraineeApi {
                	return Response.status(Response.Status.OK).build();
          	}
   	}
-
+  	
 }
