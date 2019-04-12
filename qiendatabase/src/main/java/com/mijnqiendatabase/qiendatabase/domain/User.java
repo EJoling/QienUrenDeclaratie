@@ -15,7 +15,8 @@ public class User {
 	private String achternaam;
 	private String username;
 	private String wachtwoord;
-
+	private String emailadres;
+	
 	public void inloggen() {
 	}
 
@@ -56,6 +57,14 @@ public class User {
 
 	public long getId() {
 		return id;
+	}
+
+	public String getEmailadres() {
+		return emailadres;
+	}
+
+	public void setEmailadres(String emailadres) {
+		this.emailadres = emailadres;
 	}
 
 }
