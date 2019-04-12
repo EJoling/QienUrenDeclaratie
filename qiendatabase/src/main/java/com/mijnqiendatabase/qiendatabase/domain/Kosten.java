@@ -13,7 +13,7 @@ public class Kosten {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String waarde; // Openbaar Vervoer, Overige kosten, Auto
+	private String soort; // Openbaar Vervoer, Overige kosten, Auto
 	private LocalDate factuurDatum; //krijgt huidige datum
 	private int aantalKM;//het aantal km's, bij ov is dit standaard 1.
 	private int bedrag;	//in eurocenten. dit bedrag moet vast staan voor auto (0,19 euro voor nu) 
@@ -61,12 +61,12 @@ public class Kosten {
 		
 	}
 	
-	public String getWaarde() {
-		return waarde;
+	public String getSoort() {
+		return soort;
 	}
 
-	public void setWaarde(String waarde) {
-		this.waarde = waarde;
+	public void setWaarde(String soort) {
+		this.soort = soort;
 	}
 
 	public long getId() {
