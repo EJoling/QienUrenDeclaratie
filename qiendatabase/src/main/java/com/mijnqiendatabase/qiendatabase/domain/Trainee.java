@@ -22,9 +22,11 @@ public class Trainee extends User {
 	private Set<Klant> klant; // een trainee werkt bij 1 of meer klanten
 	@OneToMany (fetch = FetchType.EAGER) //geen idee of eager fetchen nodig is, anders haal ik het nog wel weg
 	private Set<Uur> uren; // nieuw, een trainee heeft gewerkte uren ipv tijdsformulieren
-	@OneToMany (fetch = FetchType.EAGER) //geen idee of eager fetchen nodig is, anders haal ik het nog wel weg
-	private Set<Kosten> kosten; // nieuw, een trainee heeft gewerkte uren ipv tijdsformulieren
-	
+
+	@OneToMany (fetch = FetchType.EAGER)
+	private Set<Kosten> kosten; // Jordi
+
+	private boolean heeftUrenVerstuurd;
 
 	public boolean getHeeftUrenVerstuurd() {
 		return heeftUrenVerstuurd;
@@ -64,7 +66,14 @@ public class Trainee extends User {
 	
 	public void setUren(Set<Uur> uren) {
 	this.uren = uren;
-	}
+	}	
+//	Jordi: oud, declaratieformulieren gebruiken we niet meer
+//	public Set<Declaratieformulier> getDeclaraties() {
+//		return declaraties;
+//	}
+//	public void setDeclaraties(Set<Declaratieformulier> declaraties) {
+//		this.declaraties = declaraties;
+//	}
 
 	public Set<Klant> getKlant() {
 		return klant;
@@ -72,6 +81,5 @@ public class Trainee extends User {
 
 	public void setKlant(Set<Klant> klant) {
 		this.klant = klant;
-	}
-
+  }
 }

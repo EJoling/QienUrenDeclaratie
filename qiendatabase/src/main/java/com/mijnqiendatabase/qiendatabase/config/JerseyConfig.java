@@ -27,6 +27,7 @@ public class JerseyConfig extends ResourceConfig {
 		register(DeclaratieformulierApi.class); //--> commando voor aanroepen Api
 		register(KlantApi.class); //--> commando voor aanroepen Api
 		register(LoginApi.class); //--> commando voor aanroepen Api
+		register(KostenApi.class); // Jordi
 		register(KostensoortApi.class); //--> commando voor aanroepen Api
 //		register(UserApi.class); //--> commando voor aanroepen Api
 		register(TraineeApi.class); //--> commando voor aanroepen Api
