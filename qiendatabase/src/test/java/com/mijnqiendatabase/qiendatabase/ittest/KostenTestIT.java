@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.annotation.Order;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.mijnqiendatabase.qiendatabase.api.KostenApi;
@@ -18,8 +19,11 @@ public class KostenTestIT {
 	
 	@Autowired
 	private KostenApi kostenapi;
+
+	int size = 0;
 	
 	@Test
+	@Order(1)
 	public void testSave() {
 		// Arrange
 		Kosten kosten = new Kosten();
@@ -29,7 +33,6 @@ public class KostenTestIT {
 		// Assert
 		Response response = this.kostenapi.apiGetAll();
 		Iterable<Kosten> Kostenlijst = (Iterable<Kosten>) response.getEntity();
-		int size = 0;
 		for (Kosten element : Kostenlijst) {
 			size++;
 			Assert.assertEquals(element.getAantalKM(), 8);
@@ -38,6 +41,7 @@ public class KostenTestIT {
 	}//end testSave
 	
 	@Test
+	@Order(2)
 	public void testGetById() {
 		// Arrange
 		Kosten kosten = new Kosten();
@@ -46,11 +50,10 @@ public class KostenTestIT {
 		// Assert
 		Response response = this.kostenapi.apiGetAll();
 		Iterable<Kosten> Kostenlijst = (Iterable<Kosten>) response.getEntity();
-		int size = 0;
 		for (Kosten element : Kostenlijst) {
 			size++;
 		}//end for
-		Assert.assertEquals(1, size);
+		Assert.assertEquals(2, size);
 	}//end testGetById
 	
 	

@@ -40,7 +40,7 @@ public class DeclaratieformulierIT {
 		Iterable<Declaratieformulier> decs = (Iterable<Declaratieformulier>) oBody;
 		
 		for(Declaratieformulier element: decs) {
-            Assert.assertEquals("Nietdus", element.getTest());
+            Assert.assertEquals("Tim", element.getTest());
 		}
 
 	}
