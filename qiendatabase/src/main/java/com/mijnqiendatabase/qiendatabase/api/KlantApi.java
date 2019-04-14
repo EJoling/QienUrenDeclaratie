@@ -35,6 +35,7 @@ public class KlantApi {
 			return Response.status(Response.Status.CONFLICT).build();
 		}
 		return Response.ok(klantService.save(klant)).build();
+		
 	}
 
 	@GET // Retrieve/Read
