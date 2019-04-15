@@ -15,7 +15,6 @@ public class Trainee extends User {
 
 	private int loon; // in centen
 	private int type; // bijv Masterclass of gedetacheerd, ivm reiskostenvergoeding
-	private boolean heeftUrenVerstuurd;
 	
 	@JsonIgnoreProperties("trainee")
 	@OneToMany (fetch = FetchType.EAGER)
@@ -67,13 +66,6 @@ public class Trainee extends User {
 	public void setUren(Set<Uur> uren) {
 	this.uren = uren;
 	}	
-//	Jordi: oud, declaratieformulieren gebruiken we niet meer
-//	public Set<Declaratieformulier> getDeclaraties() {
-//		return declaraties;
-//	}
-//	public void setDeclaraties(Set<Declaratieformulier> declaraties) {
-//		this.declaraties = declaraties;
-//	}
 
 	public Set<Klant> getKlant() {
 		return klant;
