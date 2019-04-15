@@ -1,6 +1,8 @@
 package com.mijnqiendatabase.qiendatabase.api;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -18,7 +20,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mijnqiendatabase.qiendatabase.domain.Klant;
-import com.mijnqiendatabase.qiendatabase.service.KlantService;;
+import com.mijnqiendatabase.qiendatabase.domain.Trainee;
+import com.mijnqiendatabase.qiendatabase.domain.Uur;
+import com.mijnqiendatabase.qiendatabase.service.KlantService;
+import com.mijnqiendatabase.qiendatabase.service.TraineeService;;
 
 @Path("klant")
 @Produces(MediaType.APPLICATION_JSON)
@@ -28,7 +33,9 @@ public class KlantApi {
 
 	@Autowired
 	private KlantService klantService;
-
+	@Autowired
+	private TraineeService traineeService;
+	
 	@POST // Create
 	public Response apiCreate(Klant klant) {
 		if (klant.getId() != 0) {
@@ -54,17 +61,33 @@ public class KlantApi {
          	return Response.ok(klantService.findAll()).build();
   	}
  
-  	@PUT // Update
+	@PUT // Update
   	@Path("{id}")
   	public Response apiUpdate(@PathParam("id") long id, Klant klant) {
-         	if (klant == null || klant.getId() != id)
-               	return Response.status(Response.Status.BAD_REQUEST).build();
- 
+  		System.out.println("in PUT trainee Klant " + klant.getId());
+         	if (klant == null || klant.getId() != id) {
+               	System.out.println("bad request?");
+         		return Response.status(Response.Status.BAD_REQUEST).build();
+         	}
          	Optional<Klant> oldKlant = klantService.findById(klant.getId());
          	if (!oldKlant.isPresent()) {
+         		System.out.println("not found?");
                	return Response.status(Response.Status.NOT_FOUND).build();
          	}
-         	return Response.ok(klantService.save(klant)).build();
+         	Set<Trainee> nieuwetrainee = new HashSet();
+         	nieuwetrainee = oldKlant.get().getTrainee();
+         	
+         	for(Trainee trainee : klant.getTrainee()) {
+         		trainee.setKlant(klant);         		
+         		nieuwetrainee.add(traineeService.save(trainee));
+         		
+         	}
+         	klant.setTrainee(nieuwetrainee);
+         	Klant target = oldKlant.get();
+         	target.setTrainee(klant.getTrainee());
+    
+
+         	return Response.ok(klantService.save(target)).build();
   	}
  
   	@DELETE // Delete
