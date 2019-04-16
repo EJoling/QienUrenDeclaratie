@@ -4,6 +4,8 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -18,8 +20,8 @@ public class Trainee extends User {
 	private boolean heeftUrenVerstuurd;
 	
 	@JsonIgnoreProperties("trainee")
-	@OneToMany (fetch = FetchType.EAGER)
-	private Set<Klant> klant; // een trainee werkt bij 1 of meer klanten
+	@ManyToOne 
+	private Klant klant; // een trainee werkt bij 1 of meer klanten
 	@OneToMany (fetch = FetchType.EAGER) //geen idee of eager fetchen nodig is, anders haal ik het nog wel weg
 	private Set<Uur> uren; // nieuw, een trainee heeft gewerkte uren ipv tijdsformulieren
 
@@ -73,11 +75,11 @@ public class Trainee extends User {
 //		this.declaraties = declaraties;
 //	}
 
-	public Set<Klant> getKlant() {
+	public Klant getKlant() {
 		return klant;
 	}
 
-	public void setKlant(Set<Klant> klant) {
+	public void setKlant(Klant klant) {
 		this.klant = klant;
   }
 }

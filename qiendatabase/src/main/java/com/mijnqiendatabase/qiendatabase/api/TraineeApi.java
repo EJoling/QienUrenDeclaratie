@@ -42,10 +42,14 @@ public class TraineeApi {
 
 	@POST // Create
 	public Response apiCreate(Trainee trainee) {
+		
+		System.out.println("in POST trainee");
 		if (trainee.getId() != 0) {
 			return Response.status(Response.Status.CONFLICT).build();
 		}
+		System.out.println("in POST  trainee trainee.getKlant " + trainee.getKlant());
 		return Response.ok(traineeService.save(trainee)).build();
+		
 	}
 
 	@GET // Retrieve/Read
