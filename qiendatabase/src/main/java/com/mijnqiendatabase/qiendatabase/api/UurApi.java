@@ -71,11 +71,11 @@ public class UurApi {
          	if (uur == null || uur.getId() != id)
                	return Response.status(Response.Status.BAD_REQUEST).build();
  
-         	Optional<Uur> oldUur = uurService.findById(id);
-         	if (!oldUur.isPresent()) {
+         	Optional<Uur> optionalTarget = uurService.findById(id);
+         	if (!optionalTarget.isPresent()) {
                	return Response.status(Response.Status.NOT_FOUND).build();
          	}
-         	Uur target = oldUur.get();
+         	Uur target = optionalTarget.get();
          	target.setAccordStatus(uur.getAccordStatus());
          	System.out.println("check in uur");
          	return Response.ok(uurService.save(target)).build();
