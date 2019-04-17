@@ -17,11 +17,6 @@ public class User {
 	private String wachtwoord;
 	private String emailadres;
 	
-	public void inloggen() {
-	}
-
-	public void nieuwWachtwoordOpvragen() {
-	}
 
 	public String getVoornaam() {
 		return voornaam;

@@ -24,19 +24,10 @@ public class Uur implements Comparable<Uur>{
 	private int aantal;
 	private LocalDate factuurDatum;  //EMIELdatum(stomme naaamgeving)
 	private AccordOptie accordStatus = AccordOptie.NIETINGEVULD;
+
+	@ManyToOne
+	private Trainee trainee;
 	
-//	@ManyToOne(fetch = FetchType.EAGER)
-//	private Uursoort uursoort;
-//	@ManyToOne(fetch = FetchType.EAGER)
-//	private Klant klant;
-	
-//	
-//	public Tijdsformulier getTijdsformulier() {
-//		return tijdsformulier;
-//	}
-//	public void setTijdsformulier(Tijdsformulier tijdsformulier) {
-//		this.tijdsformulier = tijdsformulier;
-//	}
 	public String getWaarde() {
 		return waarde;
 	}
@@ -70,5 +61,8 @@ public class Uur implements Comparable<Uur>{
 	public int compareTo(Uur uur) {
 		return this.factuurDatum.compareTo(uur.getFactuurDatum());
 	}
-	
+
+	public void setTrainee(Trainee trainee) {
+		this.trainee = trainee;
+	}
 }
