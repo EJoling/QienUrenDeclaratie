@@ -22,7 +22,8 @@ public class Trainee extends User {
 	@JsonIgnoreProperties("trainee")
 	@ManyToOne 
 	private Klant klant; // een trainee werkt bij 1 of meer klanten
-	@OneToMany (fetch = FetchType.EAGER) //geen idee of eager fetchen nodig is, anders haal ik het nog wel weg
+
+	@OneToMany (mappedBy = "trainee", fetch = FetchType.EAGER) //geen idee of eager fetchen nodig is, anders haal ik het nog wel weg
 	private Set<Uur> uren; // nieuw, een trainee heeft gewerkte uren ipv tijdsformulieren
 
 	@OneToMany (fetch = FetchType.EAGER)
@@ -66,7 +67,12 @@ public class Trainee extends User {
 	
 	public void setUren(Set<Uur> uren) {
 	this.uren = uren;
-	}	
+	}
+
+	public void addUur(Uur uur) {
+		this.uren.add(uur);
+		uur.setTrainee(this);
+	}
 //	Jordi: oud, declaratieformulieren gebruiken we niet meer
 //	public Set<Declaratieformulier> getDeclaraties() {
 //		return declaraties;
