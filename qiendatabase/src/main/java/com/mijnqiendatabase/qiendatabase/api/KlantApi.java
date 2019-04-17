@@ -23,7 +23,8 @@ import com.mijnqiendatabase.qiendatabase.domain.Klant;
 import com.mijnqiendatabase.qiendatabase.domain.Trainee;
 import com.mijnqiendatabase.qiendatabase.domain.Uur;
 import com.mijnqiendatabase.qiendatabase.service.KlantService;
-import com.mijnqiendatabase.qiendatabase.service.TraineeService;;
+import com.mijnqiendatabase.qiendatabase.service.TraineeService;
+
 
 @Path("klant")
 @Produces(MediaType.APPLICATION_JSON)
@@ -89,6 +90,30 @@ public class KlantApi {
 
          	return Response.ok(klantService.save(target)).build();
   	}
+	
+	@PUT // Update door een trainee te verwijderen
+	@Path("min/{id}/{traineeId}")
+	public Response apiRemoveTrainee(@PathParam("id") long klantId, @PathParam("traineeId") long traineeId) {
+		System.out.println("Check in KlantPUTTrainee");
+		
+		Optional<Trainee> optTrainee = traineeService.findById(traineeId);
+		if (!optTrainee.isPresent()) {
+			System.out.println("bad request?");
+			return Response.status(Response.Status.NOT_FOUND).build();
+		}
+		Optional<Klant> optKlant = klantService.findById(klantId);
+		if (!optKlant.isPresent()) {
+			System.out.println("not found?");
+			return Response.status(Response.Status.BAD_REQUEST).build();
+		}
+		if (!optKlant.get().removeTrainee(optTrainee.get())) {
+			System.out.println("not modified?");
+			return Response.status(Response.Status.NOT_MODIFIED).build();
+		}
+		System.out.println("Endcheck in PUTKlantApi");
+		return Response.ok(klantService.save(optKlant.get())).build();
+	}
+	
  
   	@DELETE // Delete
   	@Path("{id}")
