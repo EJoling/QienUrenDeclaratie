@@ -12,8 +12,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Klant extends User{
+
 	@JsonIgnoreProperties("klant")
-	@OneToMany (fetch = FetchType.EAGER)
+	@OneToMany (mappedBy = "klant", fetch = FetchType.EAGER)
 	private Set<Trainee> trainee;// Een klant heeft een of meer trainees die bij hem werkt
 
 	private String bedrijf;
