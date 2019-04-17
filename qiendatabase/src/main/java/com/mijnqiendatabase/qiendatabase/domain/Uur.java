@@ -24,6 +24,9 @@ public class Uur implements Comparable<Uur>{
 	private int aantal;
 	private LocalDate factuurDatum;  //EMIELdatum(stomme naaamgeving)
 	private AccordOptie accordStatus = AccordOptie.NIETINGEVULD;
+
+	@ManyToOne
+	private Trainee trainee;
 	
 	public String getWaarde() {
 		return waarde;
@@ -58,5 +61,8 @@ public class Uur implements Comparable<Uur>{
 	public int compareTo(Uur uur) {
 		return this.factuurDatum.compareTo(uur.getFactuurDatum());
 	}
-	
+
+	public void setTrainee(Trainee trainee) {
+		this.trainee = trainee;
+	}
 }
