@@ -4,6 +4,8 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -15,18 +17,19 @@ public class Trainee extends User {
 
 	private int loon; // in centen
 	private int type; // bijv Masterclass of gedetacheerd, ivm reiskostenvergoeding
-	private boolean heeftUrenVerstuurd;
 	
 	@JsonIgnoreProperties("trainee")
-	@OneToMany (fetch = FetchType.EAGER)
-	private Set<Klant> klant; // een trainee werkt bij 1 of meer klanten
-	@OneToMany (fetch = FetchType.EAGER) //geen idee of eager fetchen nodig is, anders haal ik het nog wel weg
+	@ManyToOne 
+	private Klant klant; // een trainee werkt bij 1 of meer klanten
+
+	@OneToMany (mappedBy = "trainee", fetch = FetchType.EAGER) //geen idee of eager fetchen nodig is, anders haal ik het nog wel weg
 	private Set<Uur> uren; // nieuw, een trainee heeft gewerkte uren ipv tijdsformulieren
 
 	@OneToMany (fetch = FetchType.EAGER)
 	private Set<Kosten> kosten; // Jordi
 
-	//private boolean heeftUrenVerstuurd;
+
+	private boolean heeftUrenVerstuurd;
 
 	public boolean getHeeftUrenVerstuurd() {
 		return heeftUrenVerstuurd;
@@ -40,9 +43,6 @@ public class Trainee extends User {
 		this.kosten = kosten;
 	}
 
-	public void setHeeftUrenVerstuurd(boolean heeftUrenVerstuurd) {
-		this.heeftUrenVerstuurd = heeftUrenVerstuurd;
-	}
 
 	public int getLoon() {
 		return loon;
@@ -66,20 +66,20 @@ public class Trainee extends User {
 	
 	public void setUren(Set<Uur> uren) {
 	this.uren = uren;
-	}	
-//	Jordi: oud, declaratieformulieren gebruiken we niet meer
-//	public Set<Declaratieformulier> getDeclaraties() {
-//		return declaraties;
-//	}
-//	public void setDeclaraties(Set<Declaratieformulier> declaraties) {
-//		this.declaraties = declaraties;
-//	}
 
-	public Set<Klant> getKlant() {
+	}	
+
+	public void addUur(Uur uur) {
+		this.uren.add(uur);
+		uur.setTrainee(this);
+	}
+
+
+	public Klant getKlant() {
 		return klant;
 	}
 
-	public void setKlant(Set<Klant> klant) {
+	public void setKlant(Klant klant) {
 		this.klant = klant;
   }
 }

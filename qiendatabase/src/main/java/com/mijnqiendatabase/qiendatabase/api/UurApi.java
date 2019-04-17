@@ -41,6 +41,7 @@ public class UurApi {
 	
 	@GET // Retrieve/Read
   	public Response apiGetAll() {
+		System.out.println("tralala");
          	return Response.ok(uurService.findAll()).build();
   	}
 	
@@ -68,18 +69,19 @@ public class UurApi {
   	@PUT // Update akkoord
   	@Path("{id}/akkoordstatus")
   	public Response apiUpdateAkkoord(@PathParam("id") long id, Uur uur) {
-         	if (uur == null || uur.getId() != id)
-               	return Response.status(Response.Status.BAD_REQUEST).build();
- 
-         	Optional<Uur> oldUur = uurService.findById(id);
-         	if (!oldUur.isPresent()) {
-               	return Response.status(Response.Status.NOT_FOUND).build();
-         	}
-         	Uur target = oldUur.get();
-         	target.setAccordStatus(uur.getAccordStatus());
-         	System.out.println("check in uur");
-         	return Response.ok(uurService.save(target)).build();
-  	}
+  		System.out.println("lalalalalala");
+     	if (uur == null)
+           	return Response.status(Response.Status.BAD_REQUEST).build();
+
+     	Optional<Uur> oldUur = uurService.findById(id);
+     	if (!oldUur.isPresent()) {
+           	return Response.status(Response.Status.NOT_FOUND).build();
+     	}
+     	Uur target = oldUur.get();
+     	target.setAccordStatus(uur.getAccordStatus());
+     	System.out.println("check in uur");
+     	return Response.ok(uurService.save(target)).build();
+	}
  
   	@DELETE // Delete
   	@Path("{id}")
