@@ -27,9 +27,6 @@ public class Trainee extends User {
 	@OneToMany (fetch = FetchType.EAGER)
 	private Set<Kosten> kosten; // Jordi
 
-	public boolean getHeeftUrenVerstuurd() {
-		return heeftUrenVerstuurd;
-	}
 
 	public Set<Kosten> getKosten() {
 		return kosten;
@@ -39,9 +36,6 @@ public class Trainee extends User {
 		this.kosten = kosten;
 	}
 
-	public void setHeeftUrenVerstuurd(boolean heeftUrenVerstuurd) {
-		this.heeftUrenVerstuurd = heeftUrenVerstuurd;
-	}
 
 	public int getLoon() {
 		return loon;

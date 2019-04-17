@@ -25,18 +25,6 @@ public class Uur implements Comparable<Uur>{
 	private LocalDate factuurDatum;  //EMIELdatum(stomme naaamgeving)
 	private AccordOptie accordStatus = AccordOptie.NIETINGEVULD;
 	
-//	@ManyToOne(fetch = FetchType.EAGER)
-//	private Uursoort uursoort;
-//	@ManyToOne(fetch = FetchType.EAGER)
-//	private Klant klant;
-	
-//	
-//	public Tijdsformulier getTijdsformulier() {
-//		return tijdsformulier;
-//	}
-//	public void setTijdsformulier(Tijdsformulier tijdsformulier) {
-//		this.tijdsformulier = tijdsformulier;
-//	}
 	public String getWaarde() {
 		return waarde;
 	}

@@ -88,14 +88,18 @@ public class TraineeApi {
                	return Response.status(Response.Status.NOT_FOUND).build();
          	}
          	// 
+         	Trainee target = oldTrainee.get();
          	Set<Uur> nieuweuren = new HashSet();
          	for(Uur uur : trainee.getUren()) {
+         		
          		System.out.println(trainee.getUren());
          		nieuweuren.add(uurService.save(uur));
+         		for(Uur uren : target.getUren())
+         		nieuweuren.add(uurService.save(uren));
          		System.out.println(uur.getFactuurDatum());
          	}
          	trainee.setUren(nieuweuren);
-         	Trainee target = oldTrainee.get();
+//         	Trainee target = oldTrainee.get();
          	target.setUren(trainee.getUren());
          	System.out.println(target.getUren());
          	
@@ -113,6 +117,7 @@ public class TraineeApi {
          	return Response.ok(traineeService.save(target)).build();
   	}
   	
+  	  	
   	@DELETE // Delete Trainee
   	@Path("{id}")
   	public Response apiDeleteById(@PathParam("id") long id) {
