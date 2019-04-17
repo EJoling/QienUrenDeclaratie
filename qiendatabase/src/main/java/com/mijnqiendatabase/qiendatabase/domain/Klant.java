@@ -1,5 +1,6 @@
 package com.mijnqiendatabase.qiendatabase.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -35,6 +36,13 @@ public class Klant extends User{
 
 	public void setTrainee(Set<Trainee> trainee) {
 		this.trainee = trainee;
+	}
+	
+	public boolean removeTrainee(Trainee traineetje) {
+		System.out.println("In removeTrainee");
+//		if (trainee == null)
+//			trainee = new HashSet<>();
+		return trainee.remove(traineetje);
 	}
 
 }

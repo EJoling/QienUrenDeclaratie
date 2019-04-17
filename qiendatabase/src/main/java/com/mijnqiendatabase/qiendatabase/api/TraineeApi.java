@@ -87,7 +87,19 @@ public class TraineeApi {
          		System.out.println("not found?");
                	return Response.status(Response.Status.NOT_FOUND).build();
          	}
-         	// 
+         
+         	//NAW
+         	Trainee target = oldTrainee.get();
+         	target.setVoornaam(trainee.getVoornaam());
+         	target.setAchternaam(trainee.getAchternaam());
+         	//target.setWachtwoord(trainee.getWachtwoord());
+         	target.setEmailadres(trainee.getEmailadres());
+         	target.setUsername(trainee.getUsername());
+         	target.setKlant(trainee.getKlant());
+         	System.out.println("check in trainee naw");
+         	//return Response.ok(traineeService.save(target)).build();
+         	
+         	// Uren
          	Set<Uur> nieuweuren = new HashSet();
          	for(Uur uur : trainee.getUren()) {
          		System.out.println(trainee.getUren());
@@ -95,7 +107,6 @@ public class TraineeApi {
          		System.out.println(uur.getFactuurDatum());
          	}
          	trainee.setUren(nieuweuren);
-         	Trainee target = oldTrainee.get();
          	target.setUren(trainee.getUren());
          	System.out.println(target.getUren());
          	
