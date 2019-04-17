@@ -41,8 +41,8 @@ public class Klant extends User{
 	
 	public boolean removeTrainee(Trainee traineetje) {
 		System.out.println("In removeTrainee");
-//		if (trainee == null)
-//			trainee = new HashSet<>();
+		if (trainee == null)
+			trainee = new HashSet<>();
 		return trainee.remove(traineetje);
 	}
 
