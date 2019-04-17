@@ -17,20 +17,17 @@ public class Trainee extends User {
 
 	private int loon; // in centen
 	private int type; // bijv Masterclass of gedetacheerd, ivm reiskostenvergoeding
-	private boolean heeftUrenVerstuurd;
 	
 	@JsonIgnoreProperties("trainee")
 	@ManyToOne 
 	private Klant klant; // een trainee werkt bij 1 of meer klanten
-	@OneToMany (fetch = FetchType.EAGER) //geen idee of eager fetchen nodig is, anders haal ik het nog wel weg
+
+	@OneToMany (mappedBy = "trainee", fetch = FetchType.EAGER) //geen idee of eager fetchen nodig is, anders haal ik het nog wel weg
 	private Set<Uur> uren; // nieuw, een trainee heeft gewerkte uren ipv tijdsformulieren
 
 	@OneToMany (fetch = FetchType.EAGER)
 	private Set<Kosten> kosten; // Jordi
 
-	public boolean getHeeftUrenVerstuurd() {
-		return heeftUrenVerstuurd;
-	}
 
 	public Set<Kosten> getKosten() {
 		return kosten;
@@ -40,9 +37,6 @@ public class Trainee extends User {
 		this.kosten = kosten;
 	}
 
-	public void setHeeftUrenVerstuurd(boolean heeftUrenVerstuurd) {
-		this.heeftUrenVerstuurd = heeftUrenVerstuurd;
-	}
 
 	public int getLoon() {
 		return loon;
@@ -66,14 +60,14 @@ public class Trainee extends User {
 	
 	public void setUren(Set<Uur> uren) {
 	this.uren = uren;
+
 	}	
-//	Jordi: oud, declaratieformulieren gebruiken we niet meer
-//	public Set<Declaratieformulier> getDeclaraties() {
-//		return declaraties;
-//	}
-//	public void setDeclaraties(Set<Declaratieformulier> declaraties) {
-//		this.declaraties = declaraties;
-//	}
+
+	public void addUur(Uur uur) {
+		this.uren.add(uur);
+		uur.setTrainee(this);
+	}
+
 
 	public Klant getKlant() {
 		return klant;

@@ -75,27 +75,27 @@ public class TraineeApi {
   	public Response apiUpdate(@PathParam("id") long id, Trainee trainee) {
   		
   			// BAD REQUEST
-  		System.out.println("in trainee Uren " + trainee.getId());
+  			System.out.println("in trainee Uren " + trainee.getId());
          	if (trainee == null || trainee.getId() != id) {
                	System.out.println("bad request?");
          		return Response.status(Response.Status.BAD_REQUEST).build();
          	}
-         	Optional<Trainee> oldTrainee = traineeService.findById(trainee.getId());
+         	Optional<Trainee> optionalOldTrainee = traineeService.findById(id);
          	
          	// NOT FOUND
-         	if (!oldTrainee.isPresent()) {
+         	if (!optionalOldTrainee.isPresent()) {
          		System.out.println("not found?");
                	return Response.status(Response.Status.NOT_FOUND).build();
          	}
+			Trainee target = optionalOldTrainee.get();
          	// 
-         	Set<Uur> nieuweuren = new HashSet();
+
          	for(Uur uur : trainee.getUren()) {
-         		System.out.println(trainee.getUren());
-         		nieuweuren.add(uurService.save(uur));
-         		System.out.println(uur.getFactuurDatum());
+         		uur.setTrainee(target);
+         		uurService.save(uur);
+         		target.addUur(uur);
          	}
-         	trainee.setUren(nieuweuren);
-         	Trainee target = oldTrainee.get();
+
          	target.setUren(trainee.getUren());
          	System.out.println(target.getUren());
          	
@@ -113,6 +113,7 @@ public class TraineeApi {
          	return Response.ok(traineeService.save(target)).build();
   	}
   	
+  	  	
   	@DELETE // Delete Trainee
   	@Path("{id}")
   	public Response apiDeleteById(@PathParam("id") long id) {
