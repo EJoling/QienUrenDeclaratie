@@ -87,9 +87,17 @@ public class TraineeApi {
          		System.out.println("not found?");
                	return Response.status(Response.Status.NOT_FOUND).build();
          	}
-			Trainee target = optionalOldTrainee.get();
-         	// 
 
+         	//NAW
+         	Trainee target = optionalOldTrainee.get();
+         	target.setVoornaam(trainee.getVoornaam());
+         	target.setAchternaam(trainee.getAchternaam());
+         	//target.setWachtwoord(trainee.getWachtwoord());
+         	target.setEmailadres(trainee.getEmailadres());
+         	target.setUsername(trainee.getUsername());
+         	target.setKlant(trainee.getKlant());
+         	System.out.println("check in trainee naw");
+         	
          	for(Uur uur : trainee.getUren()) {
          		uur.setTrainee(target);
          		uurService.save(uur);
