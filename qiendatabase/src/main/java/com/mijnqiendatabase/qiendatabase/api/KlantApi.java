@@ -23,7 +23,8 @@ import com.mijnqiendatabase.qiendatabase.domain.Klant;
 import com.mijnqiendatabase.qiendatabase.domain.Trainee;
 import com.mijnqiendatabase.qiendatabase.domain.Uur;
 import com.mijnqiendatabase.qiendatabase.service.KlantService;
-import com.mijnqiendatabase.qiendatabase.service.TraineeService;;
+import com.mijnqiendatabase.qiendatabase.service.TraineeService;
+
 
 @Path("klant")
 @Produces(MediaType.APPLICATION_JSON)
@@ -60,11 +61,38 @@ public class KlantApi {
   	public Response apiGetAll() {
          	return Response.ok(klantService.findAll()).build();
   	}
+	
+	@PUT // Update Klant van een trainee
+  	@Path("naw/{id}")
+  	public Response apiUpdateNAW(@PathParam("id") long id, Klant klant) {
+  		System.out.println("in PUT  Klant " + klant.getId());
+         	if (klant == null || klant.getId() != id) {
+               	System.out.println("bad request?");
+         		return Response.status(Response.Status.BAD_REQUEST).build();
+         	}
+         	Optional<Klant> optionalOldKlant = klantService.findById(klant.getId());
+         	if (!optionalOldKlant.isPresent()) {
+         		System.out.println("not found?");
+               	return Response.status(Response.Status.NOT_FOUND).build();
+         	}
+         	
+         	Klant target = optionalOldKlant.get();
+         	target.setVoornaam(klant.getVoornaam());
+         	target.setAchternaam(klant.getAchternaam());
+         	//target.setWachtwoord(trainee.getWachtwoord());
+         	target.setEmailadres(klant.getEmailadres());
+         	target.setUsername(klant.getUsername());
+         	target.setBedrijf(klant.getBedrijf());
+         	System.out.println("check in klant naw");
+    
+
+         	return Response.ok(klantService.save(target)).build();
+  	}
  
-	@PUT // Update
+	@PUT // Update Klant zn trainee
   	@Path("{id}")
   	public Response apiUpdate(@PathParam("id") long id, Klant klant) {
-  		System.out.println("in PUT trainee Klant " + klant.getId());
+  		System.out.println("in PUT  Klant " + klant.getId());
          	if (klant == null || klant.getId() != id) {
                	System.out.println("bad request?");
          		return Response.status(Response.Status.BAD_REQUEST).build();
@@ -89,6 +117,30 @@ public class KlantApi {
 
          	return Response.ok(klantService.save(target)).build();
   	}
+	
+	@PUT // Update door een trainee te verwijderen
+	@Path("min/{id}/{traineeId}")
+	public Response apiRemoveTrainee(@PathParam("id") long klantId, @PathParam("traineeId") long traineeId) {
+		System.out.println("Check in KlantPUTTrainee");
+		
+		Optional<Trainee> optTrainee = traineeService.findById(traineeId);
+		if (!optTrainee.isPresent()) {
+			System.out.println("bad request?");
+			return Response.status(Response.Status.NOT_FOUND).build();
+		}
+		Optional<Klant> optKlant = klantService.findById(klantId);
+		if (!optKlant.isPresent()) {
+			System.out.println("not found?");
+			return Response.status(Response.Status.BAD_REQUEST).build();
+		}
+//		if (!optKlant.get().removeTrainee(optTrainee.get())) {
+//			System.out.println("not modified?");
+//			return Response.status(Response.Status.NOT_MODIFIED).build();
+//		}
+		System.out.println("Endcheck in PUTKlantApi");
+		return Response.ok(klantService.save(optKlant.get())).build();
+	}
+	
  
   	@DELETE // Delete
   	@Path("{id}")
