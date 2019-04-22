@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 
 @Entity
 public class Admin extends User {
+	public Admin() {
+		this.setRol("admin");
+	}
 
 	public void accountAanmaken() {
 	}
