@@ -83,7 +83,7 @@ public class KlantApi {
          	target.setEmailadres(klant.getEmailadres());
          	target.setUsername(klant.getUsername());
          	target.setBedrijf(klant.getBedrijf());
-         	System.out.println("check in klant naw");
+         	System.out.println("check2 in klant naw");
     
 
          	return Response.ok(klantService.save(target)).build();
