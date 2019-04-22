@@ -19,6 +19,11 @@ public class Klant extends User{
 
 	private String bedrijf;
 	
+	public Klant() {
+		this.setRol("klant");
+	}
+	
+	
 	public String getBedrijf() {
 		return bedrijf;
 	}

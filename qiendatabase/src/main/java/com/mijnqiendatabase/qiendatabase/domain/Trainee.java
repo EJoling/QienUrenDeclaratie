@@ -27,6 +27,10 @@ public class Trainee extends User {
 
 	@OneToMany (fetch = FetchType.EAGER)
 	private Set<Kosten> kosten; // Jordi
+	
+	public Trainee() {
+		this.setRol("trainee");
+	}
 
 
 	public Set<Kosten> getKosten() {
