@@ -33,6 +33,12 @@ public class Trainee extends User {
 	}
 
 
+	private boolean heeftUrenVerstuurd;
+
+	public boolean getHeeftUrenVerstuurd() {
+		return heeftUrenVerstuurd;
+	}
+
 	public Set<Kosten> getKosten() {
 		return kosten;
 	}

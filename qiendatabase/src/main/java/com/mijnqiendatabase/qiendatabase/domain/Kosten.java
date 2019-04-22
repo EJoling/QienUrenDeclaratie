@@ -19,6 +19,7 @@ public class Kosten {
 	private int bedrag;	//in eurocenten. dit bedrag moet vast staan voor auto (0,19 euro voor nu) 
 						//admin moet dit bedrag kunnen veranderen. Voor alle andere kosten is het bedrag opgegeven door de trainee.
 	private String status;
+	private String Opmerking;
 	
 //	private LocalDateTime factuurDatum = LocalDateTime.now(); //krijgt huidige datum
 //	@ManyToOne(fetch = FetchType.EAGER)
@@ -27,6 +28,14 @@ public class Kosten {
 	
 	public String getStatus() {
 		return status;
+	}
+
+	public String getOpmerking() {
+		return Opmerking;
+	}
+
+	public void setOpmerking(String opmerking) {
+		Opmerking = opmerking;
 	}
 
 	public void setStatus(String status) {
